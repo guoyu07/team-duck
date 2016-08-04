@@ -1,0 +1,15 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #efefef;
+}
+
+#the-radio {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
