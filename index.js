@@ -15,9 +15,6 @@ app.get('/', function(req, res) {
   res.render('home');
 });
 
-app.get('/api/request', function(req, res) {
-  function getRequest()
-})
 
 var port = process.env.PORT || 3000
 app.listen(port, function () {
