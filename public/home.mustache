@@ -3,28 +3,13 @@
 <head>
   <title>Rad</title>
   <link href="/base.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div id="secret_youtube_players">
     <!-- secret YouTube players go here - please don't look -->
   </div>
-  <div id="full_screen_overlay">
-    <img src="https://s-media-cache-ak0.pinimg.com/736x/67/0b/5f/670b5f0005a2dc28fdc2d07fa18fe706.jpg" id="the-radio"/>
-  </div>
-
-  <script src="geohash.js"></script>
-  <script src="rad.js"></script>
-  <script>
-    function onYouTubeIframeAPIReady() {
-      console.log("YouTube iframe API ready");
-      startRad();
-    }
-  </script>
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
-<head>
-<body>
   <div class="app">
     <div class="app__top">
       <div class="radio-settings">
@@ -37,5 +22,14 @@
     </div>
     <div class="app__grille"></div>
   </div>
+  <script src="geohash.js"></script>
+  <script src="rad.js"></script>
+  <script>
+    function onYouTubeIframeAPIReady() {
+      console.log("YouTube iframe API ready");
+      startRad();
+    }
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
