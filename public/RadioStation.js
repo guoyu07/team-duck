@@ -7,11 +7,13 @@ function RadioStation(radioId) {
 
   this.div = document.createElement("div");
   this.div.setAttribute("id", "station_" +radioId);
-  document.body.appendChild(this.div);
+  document.getElementById("secret_youtube_players").appendChild(this.div);
 
   this.radioId = radioId;
 
   this.divIdCounter = 0;
+
+  this.stopped = false;
 
   var that = this;
 
@@ -29,6 +31,12 @@ function RadioStation(radioId) {
 
 RadioStation.prototype.stop = function() {
   console.log("TODO STOP"); // TODO
+
+  document.getElementById("secret_youtube_players").removeChild(this.div);
+
+  if (this.timeout) {
+    window.clearTimeout(this.timeout);
+  }
 };
 
 // returns current and next 10 tracks in format {start_timestamp, vidid}
@@ -71,8 +79,10 @@ RadioStation.prototype.startQueueing = function (nextTrackIndex, startIn) {
 
   var that = this;
 
-  window.setTimeout(function() {
-    that.startQueueing(trackAfterIndex, nextStartIn);
+  this.timeout = window.setTimeout(function() {
+    if (!that.stopped) {
+      that.startQueueing(trackAfterIndex, nextStartIn);
+    }
   }, startIn);
 };
 
