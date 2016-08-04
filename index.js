@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
 app.get('/radio/:radio_id', function(req, res, next) {
 
-  // This should be replaced with some logic to determine the 
+  // This should be replaced with some logic to determine the
   var channel_name = 'the_pusher_office',
       channel_tracks = RadioChannel.find(channel_name),
       channel_running_length = 0;
@@ -32,7 +32,7 @@ app.get('/radio/:radio_id', function(req, res, next) {
   for(var i = 0, x = channel_tracks['tracks'].length; i < x; i++) {
     returnable_channel_tracks.tracks.push(channel_tracks['tracks'][i]);
 
-    channel_running_length += channel_tracks['tracks'][i].length;
+    channel_running_length += channel_tracks['tracks'][i].length_milliseconds;
   }
 
 

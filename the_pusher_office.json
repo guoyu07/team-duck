@@ -4,19 +4,19 @@
       "youtube_id": "k-sfFFnfO8g",
       "name": "Sleepless",
       "artist": "Cazzette",
-      "length": 214200
+      "length_milliseconds": 214200
     },
     {
       "youtube_id": "rKUbBcEz3XQ",
       "name": "Dirty Love",
       "artist": "Wilkinson",
-      "length": 187800
+      "length_milliseconds": 187800
     },
     {
       "youtube_id": "fsjuybH3UdU",
       "name": "Together",
       "artist": "Cazzette",
-      "length": 183000
+      "length_milliseconds": 183000
     }
   ]
 }
