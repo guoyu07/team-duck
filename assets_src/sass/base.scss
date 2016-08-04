@@ -1,3 +1,9 @@
+$ui_color_set: (
+  #bd10e0 : #ff0073,
+  #00ffe0 : #ffe200,
+  #4e00ff : #ff6b00
+);
+
 html,
 body {
   margin: 0;
@@ -11,6 +17,21 @@ html {
 body {
   height: 100%;
   background-color: #1a1a1a;
+
+  $i: 1;
+  @each $color_one, $color_two, $io in $ui_color_set {
+    &.state-#{$i} {
+      .grill {
+        background-image: radial-gradient(50% 100%, $color_one 25%, $color_two 100%);
+      }
+
+      .radio-channel__live {
+        color: $color_two;
+      }
+    }
+
+    $i: $i + 1;
+  }
 }
 
 #secret_youtube_players {
@@ -36,11 +57,9 @@ body {
   background-image: radial-gradient(50% 100%, #BD10E0 25%, #FF0073 100%);
   position: absolute;
   bottom: 0;
+  transition: background-image 200ms ease-in-out;
 }
 
-.grill-state-1 {
-  background-image: radial-gradient(50% 100%, #BD10E0 25%, #FF0073 100%);
-}
 
 .grill:before {
   width: calc(100% - 20px);
@@ -87,6 +106,7 @@ body {
   font-size: 16px;
   font-weight: 700;
   color: #FF0073;
+  transition: color 200ms ease-in-out;
 }
 
 .radio-channel__name {
