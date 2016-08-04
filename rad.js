@@ -59,6 +59,7 @@ function playFrom(loop, currentIndex, timeIntoTrack) {
 }
 
 function startQueueing(loop, nextTrackIndex, startIn) {
+  console.log("Queueing track", nextTrackIndex, "to start in", startIn);
   var nextTrack = loop[nextTrackIndex % loop.length];
   playFuture(nextTrack.youtube_video_id, startIn);
   // when the queued next track starts, queue the next one
@@ -88,12 +89,16 @@ function playFuture(videoId, startIn) {
   });
 }
 
+var divIdCounter = 0;
+
 // create a new player for a single track
 function playerFor(videoId, callback) {
   var div = document.createElement("div");
-  div.setAttribute("id", videoId);
+  var id = "player_" +divIdCounter; // ugh
+  divIdCounter++;
+  div.setAttribute("id", id);
   document.body.appendChild(div);
-  return new YT.Player(videoId, {
+  return new YT.Player(id, {
     height: '390',
     width: '640',
     videoId: videoId,
