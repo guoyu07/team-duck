@@ -13,6 +13,10 @@ body {
   background-color: #efefef;
 }
 
+#secret_youtube_players {
+  display: none;
+}
+
 .app {
   height: 100vh;
   width: 100%;
