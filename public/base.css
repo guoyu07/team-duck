@@ -14,7 +14,7 @@ body {
 }
 
 #secret_youtube_players {
-  /*display: none;*/
+  display: none;
 }
 
 .app {
