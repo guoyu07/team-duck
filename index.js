@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express()
 var mustacheExpress = require('mustache-express');
+var sassMiddleware = require('node-sass-middleware');
 
 var RadioChannel = require('./models/radioChannel')
 
@@ -10,11 +11,26 @@ app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set('view cache', false);
 
+app.use(sassMiddleware({
+  src: app.get('views'),
+  outputStyle: 'compressed',
+  response: true
+}));
+
+app.use(sassMiddleware({
+  /* Options */
+  src: __dirname + '/assets_src/sass',
+  dest: __dirname + '/public',
+  debug: true,
+  response: true,
+  outputStyle: 'compressed'
+}));
+
 app.use(express.static('public'));
 
 
 app.get('/', function(req, res) {
-  res.render('home');
+  res.render('player');
 });
 
 app.get('/geohash/:geohash', function(req, res) {

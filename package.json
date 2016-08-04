@@ -24,6 +24,7 @@
     "express": "^4.13.4",
     "mustache": "^2.2.1",
     "mustache-express": "^1.2.2",
-    "yamljs": "^0.2.4"
+    "yamljs": "^0.2.4",
+    "node-sass-middleware": "^0.9.7"
   }
 }

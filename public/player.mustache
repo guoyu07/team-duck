@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>Rad</title>
-  <link href="/base.css" rel="stylesheet">
+  <link href="base.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 </head>
@@ -10,19 +10,14 @@
   <div id="secret_youtube_players">
     <!-- secret YouTube players go here - please don't look -->
   </div>
-  <div class="app">
-    <div class="app__top">
-      <div class="radio-settings">
-        <div>
-          <span class="radio-settings__status">LIVE</span>
-          <h1 class="radio-settings__station-name">Pusher Radio</h1>
-        </div>
-      </div>
-      <div class="app__top__interaction"></div>
+  <div class="player">
+    <div class="radio-channel">
+      <span class="radio-channel__live">Live</span>
+      <h1 class="radio-channel__name">Pusher Radio</h1>
     </div>
-    <div class="app__grille"></div>
+    <div class="grill"></div>
   </div>
-  <script src="geohash.js"></script>
+  <!-- <script src="geohash.js"></script>
   <script src="RadioStation.js"></script>
   <script src="rad.js"></script>
   <script>
@@ -30,7 +25,7 @@
       console.log("YouTube iframe API ready");
       startRad();
     }
-  </script>
+  </script> -->
   <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>

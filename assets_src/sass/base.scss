@@ -1,0 +1,144 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #1a1a1a;
+}
+
+#secret_youtube_players {
+  display: none;
+}
+
+.player {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.radio-channel {
+  position: relative;
+  padding: 80px 20px 0;
+}
+
+.grill {
+  width: 100%;
+  height: 280px;
+  background-image: radial-gradient(50% 100%, #BD10E0 25%, #FF0073 100%);
+  position: absolute;
+  bottom: 0;
+}
+
+.grill-state-1 {
+  background-image: radial-gradient(50% 100%, #BD10E0 25%, #FF0073 100%);
+}
+
+.grill:before {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  background: url('/client_assets/grille.png') no-repeat center center / cover;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: block;
+  content: "";
+  z-index: 2;
+  border-radius: 8px;
+}
+
+.grill:after {
+  width: 90px;
+  height: 63px;
+  background: url('/client_assets/logo.png') no-repeat center center / cover;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  content: "";
+  z-index: 2;
+  animation: grill_logo_pulse 4000ms ease-in-out infinite alternate;
+}
+
+@keyframes grill_logo_pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.1, 1.1);
+  }
+}
+
+.radio-channel__live,
+.radio-channel__name {
+  font-family: 'Roboto';
+}
+
+.radio-channel__live {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FF0073;
+}
+
+.radio-channel__name {
+  font-size: 36px;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  height: 100vh;
+  width: 100%;
+}
+
+.app__top {
+  height: 60vh;
+  width: 100%;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+
+.app__top__interaction {
+  width: 100%;
+  height: 120px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+}
+
+.radio-settings {
+  width: 100%;
+  height: calc(60vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.app__grille {
+  height: 40vh;
+  width: 100%;
+  background: url(/client_assets/grille.png) no-repeat center center / cover;
+  position: relative;
+}
+
+.app__grille:before {
+  background: url(/client_assets/logo.png) no-repeat center center / contain;
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  left: 20%;
+  content: "";
+}
