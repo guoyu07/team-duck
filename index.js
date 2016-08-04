@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var mustacheExpress = require('mustache-express');
 var sassMiddleware = require('node-sass-middleware');
+var autoprefixer = require('express-autoprefixer');
 
 var RadioChannel = require('./models/radioChannel')
 
@@ -10,12 +11,7 @@ app.engine('mustache', mustacheExpress());
 
 app.set('view engine', 'mustache');
 app.set('view cache', false);
-
-app.use(sassMiddleware({
-  src: app.get('views'),
-  outputStyle: 'compressed',
-  response: true
-}));
+app.use(autoprefixer({ browsers: 'last 30 versions', cascade: false }))
 
 app.use(sassMiddleware({
   /* Options */
@@ -25,6 +21,7 @@ app.use(sassMiddleware({
   response: true,
   outputStyle: 'compressed'
 }));
+
 
 app.use(express.static('public'));
 
