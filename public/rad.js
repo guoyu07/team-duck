@@ -13,22 +13,7 @@ function startRad() {
     });
   });
 
-  // TODO get this from the server
-  // var epoch = 1470311130483;
-
-  // TODO get this from the server
-  // var loop = [
-  //   {
-  //     "youtube_id": '6PDmZnG8KsM', // voyage voyage
-  //     "length_milliseconds": 251000 // PT4M11S = 4m + 11s = 240 + 11 = 251
-  //     // curl 'https://www.googleapis.com/youtube/v3/videos' -G -d 'id=6PDmZnG8KsM' -d 'part=contentDetails' -d 'key=AIzaSyANQfgz4MFR4aRTS_MJS0FjAFG4Nr1ZaG4'
-  //   },
-  //   {
-  //     "youtube_id": 't1TcDHrkQYg', // forever young
-  //     "length_milliseconds": 218000 // PT3M38S = 3m + 38s = 180 + 38 = 218
-  //     // curl 'https://www.googleapis.com/youtube/v3/videos' -G -d 'id=t1TcDHrkQYg' -d 'part=contentDetails' -d 'key=AIzaSyANQfgz4MFR4aRTS_MJS0FjAFG4Nr1ZaG4'
-  //   }
-  // ];
+  // curl 'https://www.googleapis.com/youtube/v3/videos' -G -d 'part=contentDetails' -d 'key=AIzaSyANQfgz4MFR4aRTS_MJS0FjAFG4Nr1ZaG4' -d 'id=t1TcDHrkQYg'
 }
 
 // returns current and next 10 tracks in format {start_timestamp, vidid}
