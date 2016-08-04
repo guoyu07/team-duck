@@ -2,18 +2,56 @@
 function startRad() {
   console.log("Starting RAD");
 
-  fetch('/radio/the_pusher_office').then(function(response) {
-    console.log("Got response");
-    response.json().then(function(json) {
-      var loop = json.tracks;
-      var epoch = json.channel_epoch;
-
-      var x = loopAndEpochToCurrentlyPlaying(loop, epoch);
-      playFrom(loop, x.currentIndex, x.timeIntoCurrentTrack);
+  if ("geolocation" in navigator) {
+    var watchID = navigator.geolocation.watchPosition(function(position) {
+      console.log("Got new geo position", position);
+      var geohash = positionToGeohash(position);
+      console.log("My geohash", geohash);
+      geohashToRadioStation(geohash, function(radio) {
+        console.log("My radio station", radio);
+        setRadioStation(radio);
+      });
     });
-  });
+  } else {
+    console.log("DOGDAMNIT UPGRADE YOUR FSCKING BROWSER");
+  }
 
   // curl 'https://www.googleapis.com/youtube/v3/videos' -G -d 'part=contentDetails' -d 'key=AIzaSyANQfgz4MFR4aRTS_MJS0FjAFG4Nr1ZaG4' -d 'id=t1TcDHrkQYg'
+}
+
+// get my 2m square
+function positionToGeohash(position) {
+  return encodeGeoHash(position.coords.latitude, position.coords.longitude).slice(0,10);
+}
+
+function geohashToRadioStation(geohash, callback) {
+  fetch('/geohash/' + geohash).then(function(response) {
+    response.json().then(function(json) {
+      callback(json.radio_id);
+    });
+  });
+}
+
+var currentRadioStation = null;
+
+function setRadioStation(newRadioStation) {
+  if (currentRadioStation !== newRadioStation) {
+    console.log("New radio station! Setting radio to", newRadioStation);
+    currentRadioStation = newRadioStation;
+
+    // TODO obliterate the old radio station
+    fetch('/radio/' + newRadioStation).then(function(response) {
+      console.log("Got details for new radio station");
+      response.json().then(function(json) {
+        var loop = json.tracks;
+        var epoch = json.channel_epoch;
+
+        var x = loopAndEpochToCurrentlyPlaying(loop, epoch);
+        playFrom(loop, x.currentIndex, x.timeIntoCurrentTrack);
+      });
+    });
+
+  }
 }
 
 // returns current and next 10 tracks in format {start_timestamp, vidid}

@@ -17,7 +17,22 @@ app.get('/', function(req, res) {
   res.render('home');
 });
 
+app.get('/geohash/:geohash', function(req, res) {
+  // FIXME
+  var geohash = req.params.geohash;
+  console.log("Asked for geohash: ", geohash);
+  if (geohash.startsWith("gcpvn5")) {
+    res.json({"radio_id": "the_pusher_office"});
+  } else {
+    res.json({"radio_id": "rest_of_the_world"});
+  }
+});
+
 app.get('/radio/:radio_id', function(req, res, next) {
+
+  var radio_id = req.params.radio_id;
+
+  console.log("Ashed for radio: ", radio_id);
 
   // This should be replaced with some logic to determine the
   var channel_name = 'the_pusher_office',
