@@ -30,7 +30,7 @@ function geohashToRadioStation(geohash, callback) {
   if (geohash in geoHashToRadioStationCache) {
     callback(geoHashToRadioStationCache[geohash]);
   } else {
-    fetch('/geohash/' + "foo").then(function(response) {
+    fetch('/geohash/' + geohash).then(function(response) {
       response.json().then(function(json) {
         var radioId = json.radio_id;
         geoHashToRadioStationCache[geohash] = radioId;
