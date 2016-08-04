@@ -17,15 +17,7 @@ function getConfig(file){
 }
 
 exports.find = function(key) {
+  tracks = getConfig('../' + key + '.json');
 
-  tracks = getConfig('../the_pusher_office.json');
-
-
-  // current_time = new Date().getTime()
-  // var current_tracks = tracks.filter(function(a) {
-  //   return a.key == key
-  // })[0]
-
-  return tracks
-
+  return tracks;
 }

@@ -25,7 +25,7 @@ function positionToGeohash(position) {
 }
 
 function geohashToRadioStation(geohash, callback) {
-  fetch('/geohash/' + geohash).then(function(response) {
+  fetch('/geohash/' + "foo").then(function(response) {
     response.json().then(function(json) {
       callback(json.radio_id);
     });

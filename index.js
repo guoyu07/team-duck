@@ -22,6 +22,7 @@ app.get('/geohash/:geohash', function(req, res) {
   var geohash = req.params.geohash;
   console.log("Asked for geohash: ", geohash);
   if (geohash.startsWith("gcpvn5")) {
+    // FIXME GET A LIST OF GEOHASHES FOR THE OFFICE
     res.json({"radio_id": "the_pusher_office"});
   } else {
     res.json({"radio_id": "rest_of_the_world"});
@@ -30,13 +31,11 @@ app.get('/geohash/:geohash', function(req, res) {
 
 app.get('/radio/:radio_id', function(req, res, next) {
 
-  var radio_id = req.params.radio_id;
+  var channel_name = req.params.radio_id;
 
-  console.log("Ashed for radio: ", radio_id);
+  console.log("Ashed for radio: ", channel_name);
 
-  // This should be replaced with some logic to determine the
-  var channel_name = 'the_pusher_office',
-      channel_tracks = RadioChannel.find(channel_name),
+  var channel_tracks = RadioChannel.find(channel_name),
       channel_running_length = 0;
 
 
@@ -50,27 +49,15 @@ app.get('/radio/:radio_id', function(req, res, next) {
     channel_running_length += channel_tracks['tracks'][i].length_milliseconds;
   }
 
-
   returnable_channel_tracks["channel_length"] = channel_running_length;
-  returnable_channel_tracks["channel_epoch"] = 1470311130483
-
-
-  var channel_content = {
-    "tracks": [
-      {
-        "start_timestamp": new Date().getTime(),
-        "length": "something",
-        "epoch": "this_is_epoch",
-        "youtube_url": "https://www.youtube.com/watch?v=6PDmZnG8KsM"
-      }
-    ]
-  }
+  returnable_channel_tracks["channel_epoch"] = 1470311130483;
 
   res.json(returnable_channel_tracks);
 });
 
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3000;
+
 app.listen(port, function () {
   console.log('Listening on port %d', port)
 });
