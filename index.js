@@ -3,6 +3,8 @@ var app = express()
 var mustacheExpress = require('mustache-express');
 var sassMiddleware = require('node-sass-middleware');
 var autoprefixer = require('express-autoprefixer');
+var fs = require("fs");
+var json;
 
 var RadioChannel = require('./models/radioChannel')
 
@@ -22,6 +24,18 @@ app.use(sassMiddleware({
   outputStyle: 'compressed'
 }));
 
+function readJsonFileSync(filepath, encoding){
+  if (typeof (encoding) == 'undefined'){
+      encoding = 'utf8';
+  }
+  var file = fs.readFileSync(filepath, encoding);
+  return JSON.parse(file);
+}
+
+function getConfig(file){
+  var filepath = __dirname + '/' + file;
+  return readJsonFileSync(filepath);
+}
 
 app.use(express.static('public'));
 
@@ -33,13 +47,35 @@ app.get('/', function(req, res) {
 app.get('/geohash/:geohash', function(req, res) {
   // FIXME
   var geohash = req.params.geohash;
+  var break_one;
   console.log("Asked for geohash: ", geohash);
-  if (geohash.startsWith("gcpvn5")) {
-    // FIXME GET A LIST OF GEOHASHES FOR THE OFFICE
-    res.json({"radio_id": "the_pusher_office"});
-  } else {
-    res.json({"radio_id": "rest_of_the_world"});
+  channels = getConfig('/channels.json');
+
+
+  // res.json(tracks['channels']);
+
+  var a = 0,
+      b = channels['channels'].length,
+      c = 0,
+      break_one = false,
+      matched_channel;
+
+  for(; a < b; a++) {
+    for(c = 0, d = channels['channels'][a]['geohash_points'].length; c < d; c++) {
+      console.log(channels['channels'][a]['geohash_points'][c]);
+      if (channels['channels'][a]['geohash_points'][c] == geohash) {
+        matched_channel = channels['channels'][a];
+        break_one = true;
+        break;
+      } else {
+        continue;
+      }
+    }
+
+    if(break_one == true) {break;}
   }
+
+  res.json(matched_channel);
 });
 
 app.get('/radio/:radio_id', function(req, res, next) {
