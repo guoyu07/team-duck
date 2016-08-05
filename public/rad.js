@@ -6,7 +6,8 @@ function startRad() {
     console.log("Got new geo position", position);
     var geohash = positionToGeohash(position);
     console.log("My geohash", geohash);
-    geohashToRadioStation(geohash, function(radio) {
+    geohashToRadioStation(geohash, function(radio, channel_name) {
+      setPlayerTitle(channel_name);
       console.log("My radio station", radio);
       setRadioStation(radio);
     });
@@ -30,6 +31,10 @@ function positionToGeohash(position) {
   return encodeGeoHash(position.coords.latitude, position.coords.longitude).slice(0,10);
 }
 
+function setPlayerTitle(new_channel_name) {
+  document.getElementById('channel-name').innerHTML = new_channel_name;
+}
+
 var geoHashToRadioStationCache = {};
 
 function geohashToRadioStation(geohash, callback) {
@@ -41,7 +46,7 @@ function geohashToRadioStation(geohash, callback) {
       response.json().then(function(json) {
         var radioId = json.channel_name;
         geoHashToRadioStationCache[geohash] = radioId;
-        callback(radioId);
+        callback(radioId, json.channel_pretty);
       });
     });
   }
