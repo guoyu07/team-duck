@@ -50,6 +50,8 @@ function geohashToRadioStation(geohash, callback) {
 var currentRadioStation = null;
 
 function setRadioStation(newRadioStationId) {
+  document.body.setAttribute("class", "state-"+newRadioStationId);
+
   if ((!currentRadioStation)  ||  currentRadioStation.radioId !== newRadioStationId) {
 
     console.log("New radio station! Setting radio to", newRadioStationId);

@@ -45,9 +45,17 @@ app.get('/', function(req, res) {
 });
 
 function geohashToChannel(geohash) {
-  channels = getConfig('channels.json');
-  console.log(channels);
-  return channels.channels[0];
+  channels = getConfig('channels.json').channels;
+
+  for (var i = 0; i < channels.length; i++) {
+    var channel = channels[i];
+    if (0 < channel.geohash_points.filter(function(h) { return geohash.startsWith(h); }).length) {
+      return channel;
+    }
+  }
+
+  // default
+  return channels[0];
 }
 
 app.get('/geohash/:geohash', function(req, res) {

@@ -34,6 +34,11 @@
       "channel_name": "box_park",
       "channel_pretty": "Box Park",
       "geohash_points": ["gcpvn784", "gcpvn786", "gcpvn78d", "gcpvn78f", "gcpvn781", "gcpvn783", "gcpvn789", "gcpvn78c"]
+    },
+    {
+      "channel_name": "rest_of_the_world",
+      "channel_pretty": "The World",
+      "geohash_points": [""]
     }
   ]
 }
