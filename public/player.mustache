@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 </head>
-<body class="state-1" onclick="playAll();">
+<body class="state-rest_of_the_world" onclick="playAll();">
   <div id="secret_youtube_players">
     <!-- secret YouTube players go here - please don't look -->
     <audio class="station" id="station-the_pusher_office" controls src="http://us1.internet-radio.com:8180/;"></audio>
@@ -36,5 +36,22 @@
       startRad();
     }
   </script>
+  <script>
+
+    function changeUiColor() {
+      var newState = Math.floor(Math.random() * 3) + 1;
+
+      var newStateClass = " state-" +  newState;
+
+      document.getElementsByTagName('body')[0].classList.remove("state-1", "state-2", "state-3");
+
+      document.getElementsByTagName('body')[0].className += newStateClass;
+    }
+
+    window.setInterval(function() {
+      changeUiColor();
+    }, 2000);
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
