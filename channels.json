@@ -26,6 +26,11 @@
       ]
     },
     {
+      "channel_name": "pub",
+      "channel_pretty": "Old Kings Head",
+      "geohash_points": ["gcpvn5s0", "gcpvn5kp"]
+    },
+    {
       "channel_name": "food",
       "channel_pretty": "Food",
       "geohash_points": ["gcpvn5dt", "gcpvn5dv", "gcpvn5ds", "gcpvn5du"]
