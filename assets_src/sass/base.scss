@@ -35,7 +35,10 @@ body {
 }
 
 #secret_youtube_players {
-  display: none;
+  display: block;
+  z-index: 99;
+  position: absolute;
+  top: 0;
 }
 
 .player {
