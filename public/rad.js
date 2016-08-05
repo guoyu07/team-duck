@@ -2,16 +2,22 @@
 function startRad() {
   console.log("Starting RAD");
 
-  if ("geolocation" in navigator) {
-    var watchID = navigator.geolocation.watchPosition(function(position) {
-      console.log("Got new geo position", position);
-      var geohash = positionToGeohash(position);
-      console.log("My geohash", geohash);
-      geohashToRadioStation(geohash, function(radio) {
-        console.log("My radio station", radio);
-        setRadioStation(radio);
-      });
+  var positionUpdateFn = function(position) {
+    console.log("Got new geo position", position);
+    var geohash = positionToGeohash(position);
+    console.log("My geohash", geohash);
+    geohashToRadioStation(geohash, function(radio) {
+      console.log("My radio station", radio);
+      setRadioStation(radio);
     });
+  };
+
+  // Default location for fucked-up browsers - vaguely around the pusher office?
+  positionUpdateFn({ coords: { latitude: 51.52313739355505, longitude: -0.08246711734214573 } });
+
+  if ("geolocation" in navigator) {
+    console.log("Geolocation API exists");
+    var watchID = navigator.geolocation.watchPosition(positionUpdateFn);
   } else {
     console.log("DOGDAMNIT UPGRADE YOUR FSCKING BROWSER");
   }
@@ -28,6 +34,7 @@ var geoHashToRadioStationCache = {};
 
 function geohashToRadioStation(geohash, callback) {
   if (geohash in geoHashToRadioStationCache) {
+    console.log("[Using cache to get radio station.]");
     callback(geoHashToRadioStationCache[geohash]);
   } else {
     fetch('/geohash/' + geohash).then(function(response) {
