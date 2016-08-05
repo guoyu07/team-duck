@@ -1,8 +1,8 @@
-$ui_color_set: (
-  #bd10e0 : #ff0073,
-  #00ffe0 : #ffe200,
-  #4e00ff : #ff6b00
-);
+// $ui_color_set: (
+//   #bd10e0 : #ff0073,
+//   #00ffe0 : #ffe200,
+//   #4e00ff : #ff6b00
+// );
 
 html,
 body {
@@ -18,19 +18,39 @@ body {
   height: 100%;
   background-color: #1a1a1a;
 
-  $i: 1;
-  @each $color_one, $color_two, $io in $ui_color_set {
-    &.state-#{$i} {
-      .grill {
-        background: radial-gradient(50% 100%, $color_one 25%, $color_two 100%);
-      }
+  // $i: 1;
+  // @each $color_one, $color_two, $io in $ui_color_set {
+  //   &.state-#{$i} {
+  //     .grill {
+  //       background: radial-gradient(50% 100%, $color_one 25%, $color_two 100%);
+  //     }
 
-      .radio-channel__live {
-        color: $color_two;
-      }
+  //     .radio-channel__live {
+  //       color: $color_two;
+  //     }
+  //   }
+
+  //   $i: $i + 1;
+  // }
+
+  &.state-the_pusher_office {
+    .grill {
+      background: radial-gradient(50% 100%, #bd10e0 25%, #ff0073 100%);
     }
 
-    $i: $i + 1;
+    .radio-channel__live {
+      color: #ff0073;
+    }
+  }
+
+  &.state-rest_of_the_world {
+    .grill {
+      background: radial-gradient(50% 100%, #00ffe0 25%, #ffe200 100%);
+    }
+
+    .radio-channel__live {
+      color: #ffe200;
+    }
   }
 }
 
