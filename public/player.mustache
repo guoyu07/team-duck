@@ -6,9 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 </head>
-<body class="state-1">
+<body class="state-1" onclick="playAll();">
   <div id="secret_youtube_players">
     <!-- secret YouTube players go here - please don't look -->
+    <audio class="station" id="station-the_pusher_office" controls src="http://us1.internet-radio.com:8180/;"></audio>
+    <audio class="station" id="station-food" controls src="http://uk1.internet-radio.com:8267/;"></audio>
+    <audio class="station" id="station-box_park" controls src="http://us1.internet-radio.com:8180/;"></audio>
+    <audio class="station" id="station-rest_of_the_world" controls src="http://us2.internet-radio.com:8443/;"></audio>
   </div>
   <div class="player">
     <div class="radio-channel">
@@ -19,15 +23,18 @@
   </div>
   <script src="fetch.js"></script>
   <script src="geohash.js"></script>
-  <script src="RadioStation.js"></script>
   <script src="rad.js"></script>
+
   <script>
-    console.log("HTML loaded.");
-    function onYouTubeIframeAPIReady() {
-      console.log("YouTube iframe API ready");
+    function playAll() {
+      var stations = document.getElementsByClassName("station");
+      for (var i = 0; i < stations.length; i++) {
+        stations[i].volume = 0;
+        stations[i].play();
+      }
+
       startRad();
     }
   </script>
-  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>

@@ -44,38 +44,16 @@ app.get('/', function(req, res) {
   res.render('player');
 });
 
+function geohashToChannel(geohash) {
+  channels = getConfig('channels.json');
+  console.log(channels);
+  return channels.channels[0];
+}
+
 app.get('/geohash/:geohash', function(req, res) {
-  // FIXME
   var geohash = req.params.geohash;
-  var break_one;
   console.log("Asked for geohash: ", geohash);
-  channels = getConfig('/channels.json');
-
-
-  // res.json(tracks['channels']);
-
-  var a = 0,
-      b = channels['channels'].length,
-      c = 0,
-      break_one = false,
-      matched_channel;
-
-  for(; a < b; a++) {
-    for(c = 0, d = channels['channels'][a]['geohash_points'].length; c < d; c++) {
-      console.log(channels['channels'][a]['geohash_points'][c]);
-      if (channels['channels'][a]['geohash_points'][c] == geohash) {
-        matched_channel = channels['channels'][a];
-        break_one = true;
-        break;
-      } else {
-        continue;
-      }
-    }
-
-    if(break_one == true) {break;}
-  }
-
-  res.json(matched_channel);
+  res.json(geohashToChannel(geohash));
 });
 
 app.get('/radio/:radio_id', function(req, res, next) {

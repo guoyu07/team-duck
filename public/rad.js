@@ -39,7 +39,7 @@ function geohashToRadioStation(geohash, callback) {
   } else {
     fetch('/geohash/' + geohash).then(function(response) {
       response.json().then(function(json) {
-        var radioId = json.radio_id;
+        var radioId = json.channel_name;
         geoHashToRadioStationCache[geohash] = radioId;
         callback(radioId);
       });
@@ -51,12 +51,18 @@ var currentRadioStation = null;
 
 function setRadioStation(newRadioStationId) {
   if ((!currentRadioStation)  ||  currentRadioStation.radioId !== newRadioStationId) {
+
     console.log("New radio station! Setting radio to", newRadioStationId);
 
-    // TODO obliterate the old radio station
-    if (currentRadioStation) {
-      currentRadioStation.stop();
+    var stations = document.getElementsByClassName("station");
+    for (var i = 0; i < stations.length; i++) {
+      var station = stations[i];
+      console.log("ID:", station.getAttribute("id"));
+      if (station.getAttribute("id") === "station-" + newRadioStationId) {
+        station.volume = 1;
+      } else {
+        station.volume = 0;
+      }
     }
-    currentRadioStation = new RadioStation(newRadioStationId);
   }
 }
