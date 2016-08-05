@@ -13,7 +13,7 @@ function startRad() {
   };
 
   // Default location for fucked-up browsers - vaguely around the pusher office?
-  positionUpdateFn({ coords: { latitude: 51.52313739355505, longitude: -0.08246711734214573 } });
+  // positionUpdateFn({ coords: { latitude: 51.52313739355505, longitude: -0.08246711734214573 } });
 
   if ("geolocation" in navigator) {
     console.log("Geolocation API exists");
@@ -61,9 +61,9 @@ function setRadioStation(newRadioStationId) {
       var station = stations[i];
       console.log("ID:", station.getAttribute("id"));
       if (station.getAttribute("id") === "station-" + newRadioStationId) {
-        station.volume = 1;
+        $(station).animate({volume: 1}, 3000);
       } else {
-        station.volume = 0;
+        $(station).animate({volume: 0}, 3000);
       }
     }
   }
